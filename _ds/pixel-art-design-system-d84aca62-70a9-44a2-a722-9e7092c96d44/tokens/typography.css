@@ -1,0 +1,29 @@
+/* Pixel Art — typography tokens */
+:root{
+  --font-display:"Pixelify Sans","Silkscreen",ui-monospace,monospace;
+  --font-pixel-caps:"Silkscreen","Pixelify Sans",ui-monospace,monospace;
+  --font-body:"Mulish",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --weight-regular:400;/* @kind font */--weight-medium:500;/* @kind font */--weight-semibold:600;/* @kind font */--weight-bold:700;/* @kind font */--weight-extrabold:800;/* @kind font */
+
+  /* Display — pixel type, headlines only */
+  --text-display-xl:72px;--lh-display-xl:1.05;/* @kind font */
+  --text-display-lg:56px;--lh-display-lg:1.1;/* @kind font */
+  --text-display-md:44px;--lh-display-md:1.15;/* @kind font */
+  --text-display-sm:32px;--lh-display-sm:1.2;/* @kind font */
+  --text-display-xs:24px;--lh-display-xs:1.25;/* @kind font */
+  --tracking-display:0.02em;/* @kind font */
+  /* Eyebrow — Silkscreen caps, wide tracking */
+  --text-eyebrow:16px;--tracking-eyebrow:0.24em;/* @kind font */
+  /* UI labels — buttons, tabs, signs */
+  --text-button-lg:20px;--text-button-md:17px;--text-button-sm:14px;--tracking-button:0.04em;/* @kind font */
+  /* Body — Mulish */
+  --text-body-xl:22px;--lh-body-xl:1.55;/* @kind font */
+  --text-body-lg:19px;--lh-body-lg:1.6;/* @kind font */
+  --text-body-md:16px;--lh-body-md:1.6;/* @kind font */
+  --text-body-sm:14px;--lh-body-sm:1.5;/* @kind font */
+  --text-caption:12px;--lh-caption:1.4;/* @kind font */
+  --tracking-caps:0.14em;/* @kind font */
+  /* Mono — code, terminal */
+  --text-code:14px;--lh-code:1.7;/* @kind font */--text-code-sm:12px;
+}

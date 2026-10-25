@@ -1,0 +1,28 @@
+/* Pixel Art — bevels, shadows, clip shapes, motion */
+:root{
+  /* Bevel = hard inset bottom edge; the signature "chunky button" */
+  --bevel-yellow:inset 0 -4px 0 #D99A00;/* @kind shadow */
+  --bevel-blue:inset 0 -4px 0 #0A5A99;/* @kind shadow */
+  --bevel-dark:inset 0 -3px 0 #020414;/* @kind shadow */
+  --bevel-red:inset 0 -4px 0 #9E1F18;/* @kind shadow */
+  --bevel-green:inset 0 -4px 0 #2C6B0C;/* @kind shadow */
+  /* Hard drop shadows — no blur, pixel offset */
+  --shadow-pixel-sm:2px 2px 0 rgba(0,0,0,.55);
+  --shadow-pixel-md:4px 4px 0 rgba(0,0,0,.55);
+  --shadow-sign:0 4px 0 #1A1640;
+  --text-shadow-pixel:0 3px 0 rgba(0,0,0,.45);
+  --text-shadow-hero:0 2px 8px rgba(0,0,0,.45);
+  /* Soft elevation — only floating media and overlays */
+  --shadow-card:0 16px 40px rgba(0,0,0,.45);
+  --shadow-float:0 8px 24px rgba(0,0,0,.4);
+  --shadow-glow-yellow:0 0 0 3px rgba(255,210,31,.25);
+  /* Notched pixel corners (use as clip-path) */
+  --clip-notch-sm:polygon(0 2px,2px 2px,2px 0,calc(100% - 2px) 0,calc(100% - 2px) 2px,100% 2px,100% calc(100% - 2px),calc(100% - 2px) calc(100% - 2px),calc(100% - 2px) 100%,2px 100%,2px calc(100% - 2px),0 calc(100% - 2px));/* @kind other */
+  --clip-notch-md:polygon(0 4px,4px 4px,4px 0,calc(100% - 4px) 0,calc(100% - 4px) 4px,100% 4px,100% calc(100% - 4px),calc(100% - 4px) calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,4px calc(100% - 4px),0 calc(100% - 4px));/* @kind other */
+  /* Motion */
+  --ease-out:cubic-bezier(.2,.8,.2,1);/* @kind other */
+  --ease-bounce:cubic-bezier(.34,1.56,.64,1);/* @kind other */
+  --ease-pixel:steps(4,end);/* @kind other */
+  --dur-instant:80ms;/* @kind other */--dur-fast:140ms;/* @kind other */--dur-base:220ms;/* @kind other */--dur-slow:400ms;/* @kind other */
+  --press-offset:2px;/* @kind spacing */
+}
