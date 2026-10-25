@@ -32,7 +32,8 @@
 <script src="_ds/pixel-art-design-system-d84aca62-70a9-44a2-a722-9e7092c96d44/_ds_bundle.js"></script>
 <script src="pixel-scene.js"></script>
 <style>html{scroll-behavior:smooth}body{margin:0;background:#020414}a{color:var(--blue-300)}a:hover{color:var(--yellow-300)}nav::-webkit-scrollbar,.nav-links::-webkit-scrollbar{display:none}
-@media (max-width:640px){nav.site-nav{height:auto!important;flex-wrap:wrap;padding:8px 16px!important;row-gap:6px!important;justify-content:space-between}nav.site-nav .nav-links{order:3;flex:1 1 100%!important;justify-content:space-between!important;padding-bottom:2px}section,header{scroll-margin-top:84px!important}}
+@media (max-width:640px){nav.site-nav{gap:12px!important;padding:0 16px!important}nav.site-nav>a:first-of-type{margin-right:auto}nav.site-nav .nav-links{display:none!important;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0!important;overflow:visible!important;background:var(--ink-950);border-bottom:2px solid var(--ink-750);padding:4px 16px 8px;box-shadow:0 8px 16px rgba(2,4,20,.25)}nav.site-nav[data-open="true"] .nav-links{display:flex!important}nav.site-nav .nav-links a{padding:12px 0;font-size:18px!important;border-bottom:1px solid var(--ink-750)}nav.site-nav .nav-links a:last-child{border-bottom:0}.nav-toggle{display:grid!important}}
+.nav-toggle{display:none;place-items:center;width:40px;height:40px;padding:0;background:transparent;border:2px solid var(--ink-750);color:var(--fg-1);cursor:pointer;clip-path:var(--clip-notch-sm)}
 [data-theme="dusk"]{--ink-950:#170D2A;--ink-900:#201336;--ink-850:#291942;--ink-800:#33204F;--ink-750:#40285E;--ink-700:#52336F;--ink-600:#684484;--ink-500:#86619E;--gray-100:#FFF1EA;--gray-200:#F6DCD6;--gray-300:#E2C3CC;--gray-400:#BFA0B4;--bg-page:#170D2A;--bg-surface:#201336;--bg-raised:#33204F;--border-subtle:#40285E;--border-default:#52336F;--border-strong:#684484;--fg-1:#FFFFFF;--fg-2:#E2C3CC;--fg-3:#BFA0B4;--text-heading:#FFFFFF;--text-body:#E2C3CC;--text-muted:#BFA0B4;--eyebrow:#FFE05C;--gradient-scene-fade:linear-gradient(180deg,rgba(23,13,42,0) 0%,rgba(23,13,42,.85) 70%,#170D2A 100%)}
 [data-theme="day"]{--page-bg:linear-gradient(180deg,#7FCB4A 0%,#9AD865 4%,#B6E484 10%,#C8EC9C 20%,#D2EFAA 45%,#DBF3BA 72%,#D8F0C8 84%,#A8E0F2 93%,#2A8FE0 98%,#0C5FB8 100%);--ink-950:#C4EA96;--ink-900:transparent;--ink-850:rgba(240,252,225,.78);--ink-800:#EAF8D6;--ink-750:#8CC456;--ink-700:#76B242;--ink-600:#5A9A2E;--ink-500:#3F7A1E;--gray-100:#0E2305;--gray-200:#1A3310;--gray-300:#1A3310;--gray-400:#2F5220;--bg-page:#C4EA96;--bg-surface:rgba(244,253,232,.82);--bg-raised:#EAF8D6;--border-subtle:#9BD06A;--border-default:#76B242;--border-strong:#5A9A2E;--fg-1:#0E2305;--fg-2:#0E2305;--fg-3:#2F5220;--text-heading:#0E2305;--text-body:#0E2305;--text-muted:#2F5220;--text-link:#0A5A99;--eyebrow:#3D2A00;--tone-purple:#4A1FB8;--tone-blue:#0A5A99;--tone-green:#1F5A14;--tone-pink:#A3155A;--purple-400:#4A1FB8;--pink-400:#A3155A;--yellow-500:#6B4A00;--green-400:#2C6B0C;--gradient-scene-fade:linear-gradient(180deg,rgba(63,148,16,0) 0%,rgba(63,148,16,.85) 70%,#3F9410 100%)}
 [data-theme="day"]{--blue-400:#0A5A99;--orange-400:#A8481A}
@@ -49,15 +50,16 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
 
 <a href="#top" class="skip-link">Skip to content</a>
 
-<nav class="site-nav" style="position:sticky;top:0;z-index:50;height:52px;box-sizing:border-box;background:var(--ink-950);border-bottom:2px solid var(--ink-750);display:flex;align-items:center;gap:20px;padding:0 20px;">
+<nav class="site-nav" data-open="{{ menuOpen }}" style="position:sticky;top:0;z-index:50;height:52px;box-sizing:border-box;background:var(--ink-950);border-bottom:2px solid var(--ink-750);display:flex;align-items:center;gap:20px;padding:0 20px;">
   <a href="#top" style="font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--fg-1);text-decoration:none;white-space:nowrap;display:flex;align-items:center;gap:6px;">Sahil Kumar<span style="color:var(--yellow-400);">✧</span></a>
-  <div class="nav-links" style="flex:1;min-width:0;display:flex;justify-content:safe center;gap:22px;overflow-x:auto;scrollbar-width:none;">
+  <div class="nav-links" id="site-links" onClick="{{ closeMenu }}" style="flex:1;min-width:0;display:flex;justify-content:safe center;gap:22px;overflow-x:auto;scrollbar-width:none;">
     <a href="#about" style="font-family:var(--font-display);font-size:16px;color:var(--gray-200);text-decoration:none;white-space:nowrap;" style-hover="color:var(--yellow-300)">About</a>
     <a href="#quests" style="font-family:var(--font-display);font-size:16px;color:var(--gray-200);text-decoration:none;white-space:nowrap;" style-hover="color:var(--yellow-300)">Projects</a>
     <a href="#journey" style="font-family:var(--font-display);font-size:16px;color:var(--gray-200);text-decoration:none;white-space:nowrap;" style-hover="color:var(--yellow-300)">Journey</a>
     <a href="#skills" style="font-family:var(--font-display);font-size:16px;color:var(--gray-200);text-decoration:none;white-space:nowrap;" style-hover="color:var(--yellow-300)">Skills</a>
   </div>
   <x-import component-from-global-scope="PixelArtDesignSystem_d84aca.Button" size="sm" href="#contact" hint-size="100px,32px">Say hello</x-import>
+  <button class="nav-toggle" aria-label="Menu" aria-controls="site-links" aria-expanded="{{ menuOpen }}" onClick="{{ toggleMenu }}"><sc-if value="{{ menuShut }}"><svg viewBox="0 0 24 24" width="22" height="22" shape-rendering="crispEdges" fill="currentColor"><path d="M3 5h18v3H3zM3 11h18v3H3zM3 17h18v3H3z"></path></svg></sc-if><sc-if value="{{ menuShown }}"><svg viewBox="0 0 24 24" width="22" height="22" shape-rendering="crispEdges" fill="currentColor"><path d="M5 3h3v2h2v2h4V5h2V3h3v3h-2v2h-2v2h-2v4h2v2h2v2h2v3h-3v-2h-2v-2h-4v2H8v2H5v-3h2v-2h2v-2h2v-4H9V8H7V6H5z"></path></svg></sc-if></button>
 </nav>
 
 <header id="top" data-screen-label="Hero" style="position:relative;min-height:max(640px, calc(100vh - 52px));overflow:hidden;background:#0C5FB8;display:flex;flex-direction:column;">
@@ -483,7 +485,7 @@ const TITLES = {
 const DURS = { 'cloud-country': 90, 'fall-mushroom': 213, 'music-box': 74, 'night-market': 131, 'overture': 146, 'spring-big-world': 236, 'spring-horseradish': 245, 'spring-valley': 263, 'summer': 208, 'winter-ancient': 185, 'winter-festival': 86, 'winter-nocturne': 200, 'winter-wind': 171 };
 const fmt = s => (isFinite(s) && s > 0) ? Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0') : '0:00';
 class Component extends DCLogic {
-  state = { typed: 'Python', cursor: true, open: false, playing: false, prompt: false, vol: 0.5 };
+  state = { typed: 'Python', cursor: true, open: false, playing: false, prompt: false, vol: 0.5, menu: false };
   readPrefs() { try { return JSON.parse(localStorage.getItem(MKEY)) || {}; } catch (e) { return {}; } }
   savePrefs(p) { try { localStorage.setItem(MKEY, JSON.stringify({ ...this.readPrefs(), ...p })); } catch (e) {} }
   durNow() {
@@ -606,6 +608,11 @@ class Component extends DCLogic {
       heroPreset: { day: 'meadow', dusk: 'dusk', night: 'night' }[time] || 'meadow',
       contactPreset: { day: 'dayend', dusk: 'duskend', night: 'fireflies' }[time] || 'dayend',
       theme: time,
+      menuOpen: this.state.menu ? 'true' : 'false',
+      menuShown: !!this.state.menu,
+      menuShut: !this.state.menu,
+      toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
+      closeMenu: () => this.setState({ menu: false }),
       motionAttr: motion ? 'on' : 'off',
       typed: this.state.typed,
       cursorOpacity: this.state.cursor ? 1 : 0,
