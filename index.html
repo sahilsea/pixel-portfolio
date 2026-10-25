@@ -403,6 +403,52 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
   </div>
 </footer>
 
+<div style="position:fixed;right:16px;bottom:16px;z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-family:var(--font-display);">
+  <sc-if value="{{ showPrompt }}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative;max-width:260px;background:rgba(2,4,20,.92);border:2px solid #52336F;clip-path:var(--clip-notch-sm);padding:12px 14px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow-card);">
+      <span style="font-family:var(--font-body);font-weight:600;font-size:15px;line-height:1.4;color:#FFFFFF;">Play some music while you look around? ♪</span>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <x-import component-from-global-scope="PixelArtDesignSystem_d84aca.Button" size="sm" on-click="{{ acceptMusic }}" hint-size="96px,32px">Yes please</x-import>
+        <button onClick="{{ declineMusic }}" style="font-family:var(--font-display);font-size:14px;color:#E2DDF0;background:transparent;border:0;padding:6px 8px;cursor:pointer;" style-hover="color:var(--yellow-300)">No thanks</button>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ playerOpen }}" hint-placeholder-val="{{ false }}">
+    <div role="region" aria-label="Music player" style="display:flex;flex-direction:column;gap:8px;width:320px;max-width:calc(100vw - 32px);box-sizing:border-box;padding:10px 8px 8px 12px;background:rgba(2,4,20,.92);border:2px solid #52336F;clip-path:var(--clip-notch-sm);box-shadow:var(--shadow-card);">
+      <div style="display:flex;align-items:center;gap:8px;min-width:0;padding-right:4px;">
+        <svg viewBox="0 0 24 24" width="18" height="18" shape-rendering="crispEdges" fill="{{ noteColor }}" style="flex:none;"><path d="M9 3h12v14h-2v2h-4v-2h-2v-2h2v-2h4V7h-8v10H9v2H5v-2H3v-2h2v-2h4V3z"></path></svg>
+        <span title="{{ trackTitle }}" style="flex:1;min-width:0;font-size:15px;line-height:1.25;color:#FFFFFF;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">{{ trackTitle }}</span>
+      </div>
+      <div onClick="{{ seek }}" onKeyDown="{{ seekKey }}" sc-camel-tab-index="0" role="slider" aria-label="Song progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ progressNum }}" aria-valuetext="{{ progressText }}" style="height:14px;display:flex;align-items:center;cursor:pointer;margin-right:4px;">
+        <div style="position:relative;width:100%;height:6px;background:#33204F;">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:{{ progressPct }};background:#FFD23F;"></div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin:-6px 4px 0 0;font-family:var(--font-mono);font-size:12px;color:#BFB8D6;">
+        <span>{{ timeCur }}</span><span>{{ timeDur }}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:4px;">
+      <button aria-label="Previous track" onClick="{{ prevTrack }}" style="width:36px;height:36px;display:grid;place-items:center;background:transparent;border:0;color:#FFFFFF;cursor:pointer;clip-path:var(--clip-notch-sm);" style-hover="background:rgba(255,255,255,.12)"><svg viewBox="0 0 24 24" width="20" height="20" shape-rendering="crispEdges" fill="currentColor"><path d="M19 5h-2v2h-2v2h-2v2h-2v2h2v2h2v2h2v2h2V5zM6 5h3v14H6z"></path></svg></button>
+      <button aria-label="{{ playLabel }}" onClick="{{ togglePlay }}" style="width:40px;height:40px;display:grid;place-items:center;background:var(--yellow-400);border:2px solid #1A1200;color:#1A1200;cursor:pointer;clip-path:var(--clip-notch-sm);box-shadow:var(--bevel-yellow);" style-hover="background:var(--yellow-300)">
+        <sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" width="20" height="20" shape-rendering="crispEdges" fill="currentColor"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"></path></svg></sc-if>
+        <sc-if value="{{ paused }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="20" height="20" shape-rendering="crispEdges" fill="currentColor"><path d="M10 20H8V4h2v2h2v3h2v2h2v2h-2v2h-2v3h-2v2z"></path></svg></sc-if>
+      </button>
+      <button aria-label="Next track" onClick="{{ nextTrack }}" style="width:36px;height:36px;display:grid;place-items:center;background:transparent;border:0;color:#FFFFFF;cursor:pointer;clip-path:var(--clip-notch-sm);" style-hover="background:rgba(255,255,255,.12)"><svg viewBox="0 0 24 24" width="20" height="20" shape-rendering="crispEdges" fill="currentColor"><path d="M5 5h2v2h2v2h2v2h2v2h-2v2H9v2H7v2H5V5zM15 5h3v14h-3z"></path></svg></button>
+      <div style="display:flex;align-items:center;gap:6px;margin-left:6px;color:#FFFFFF;">
+        <svg viewBox="0 0 24 24" width="18" height="18" shape-rendering="crispEdges" fill="currentColor" style="flex:none;"><path d="M11 4h2v16h-2v-2H9v-2H7v-2H3v-4h4V8h2V6h2V4zM16 9h2v6h-2zM19 6h2v12h-2z"></path></svg>
+        <input type="range" min="0" max="1" step="0.05" value="{{ volume }}" onChange="{{ setVolume }}" aria-label="Volume" style="width:72px;accent-color:#FFD23F;cursor:pointer;">
+      </div>
+      <span style="flex:1;"></span><button aria-label="Minimize player" onClick="{{ minimize }}" style="width:32px;height:32px;margin-left:4px;display:grid;place-items:center;background:transparent;border:0;color:#BFB8D6;cursor:pointer;clip-path:var(--clip-notch-sm);" style-hover="background:rgba(255,255,255,.12);color:#FFFFFF"><svg viewBox="0 0 24 24" width="18" height="18" shape-rendering="crispEdges" fill="currentColor"><path d="M5 11h14v2H5z"></path></svg></button>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ playerClosed }}" hint-placeholder-val="{{ true }}">
+    <button aria-label="Open music player" onClick="{{ expand }}" style="width:52px;height:52px;display:grid;place-items:center;background:rgba(2,4,20,.92);border:2px solid #52336F;clip-path:var(--clip-notch-sm);box-shadow:var(--shadow-card);cursor:pointer;" style-hover="border-color:#FFD23F">
+      <svg viewBox="0 0 24 24" width="24" height="24" shape-rendering="crispEdges" fill="{{ noteColor }}"><path d="M9 3h12v14h-2v2h-4v-2h-2v-2h2v-2h4V7h-8v10H9v2H5v-2H3v-2h2v-2h4V3z"></path></svg>
+    </button>
+  </sc-if>
+</div>
+
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;heroTime&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;day&quot;,&quot;dusk&quot;,&quot;night&quot;],&quot;default&quot;:&quot;day&quot;,&quot;tsType&quot;:&quot;'day'|'dusk'|'night'&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
@@ -419,9 +465,99 @@ const TAGS = {
   concepts: ['SDLC', 'OOP', 'Data Structures & Algorithms', 'RESTful APIs', 'Access Control', 'Debugging & Troubleshooting', 'Code Reviews', 'Agile/Scrum']
 };
 const BADGES = ['Learning Docker', 'Learning Docker Compose', 'Docker: Your First Project', 'Networking Foundations: Networking Basics', 'Web3 Design and Security Essentials'];
+const M = 'assets/music/';
+const PLAYLISTS = {
+  day: ['overture', 'spring-big-world', 'spring-valley', 'spring-horseradish', 'summer'],
+  dusk: ['fall-mushroom', 'cloud-country', 'music-box'],
+  night: ['night-market', 'winter-nocturne', 'winter-wind', 'winter-ancient', 'winter-festival']
+};
+const MKEY = 'sahil-friends-music';
+const TITLES = {
+  'overture': 'Stardew Valley Overture', 'spring-big-world': "Spring (It's A Big World Outside)",
+  'spring-valley': 'Spring (The Valley Comes Alive)', 'spring-horseradish': 'Spring (Wild Horseradish Jam)',
+  'summer': "Summer (Nature's Crescendo)", 'fall-mushroom': 'Fall (The Smell Of Mushroom)',
+  'cloud-country': 'Cloud Country', 'music-box': 'Music Box Song', 'night-market': 'Night Market',
+  'winter-nocturne': 'Winter (Nocturne Of Ice)', 'winter-wind': 'Winter (The Wind Can Be Still)',
+  'winter-ancient': 'Winter (Ancient)', 'winter-festival': 'Winter Festival'
+};
+const DURS = { 'cloud-country': 90, 'fall-mushroom': 213, 'music-box': 74, 'night-market': 131, 'overture': 146, 'spring-big-world': 236, 'spring-horseradish': 245, 'spring-valley': 263, 'summer': 208, 'winter-ancient': 185, 'winter-festival': 86, 'winter-nocturne': 200, 'winter-wind': 171 };
+const fmt = s => (isFinite(s) && s > 0) ? Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0') : '0:00';
 class Component extends DCLogic {
-  state = { typed: 'Python', cursor: true };
+  state = { typed: 'Python', cursor: true, open: false, playing: false, prompt: false, vol: 0.5 };
+  readPrefs() { try { return JSON.parse(localStorage.getItem(MKEY)) || {}; } catch (e) { return {}; } }
+  savePrefs(p) { try { localStorage.setItem(MKEY, JSON.stringify({ ...this.readPrefs(), ...p })); } catch (e) {} }
+  durNow() {
+    const d = this.audio && this.audio.duration;
+    return (isFinite(d) && d > 0 && d < 36000) ? d : (DURS[this.state.track] || 0);
+  }
+  curNow() {
+    const c = this.audio ? this.audio.currentTime : 0, d = this.durNow();
+    return (isFinite(c) && c >= 0) ? (d ? Math.min(c, d) : c) : 0;
+  }
+  themeNow() { return this.props.heroTime ?? 'day'; }
+  load(theme, idx) {
+    const list = PLAYLISTS[theme] || PLAYLISTS.day;
+    this.mTheme = theme; this.mIdx = (idx + list.length) % list.length;
+    this.audio.src = M + list[this.mIdx] + '.mp3';
+    this.setState({ track: list[this.mIdx], cur: 0, dur: 0 });
+  }
+  step(dir) {
+    const t = this.themeNow();
+    if (t !== this.mTheme || !this.audio.src) this.load(t, 0); else this.load(t, this.mIdx + dir);
+    this.audio.load();
+    this.tryPlay();
+  }
+  play() {
+    if (!this.audio.src) this.load(this.themeNow(), 0);
+    this.tryPlay();
+  }
+  tryPlay() {
+    const p = this.audio.play();
+    if (p && p.catch) p.catch(() => {
+      // blocked without a gesture: resume on the visitor's next tap/key
+      if (this.offGesture) this.offGesture();
+      const go = () => { off(); this.audio.play().catch(() => {}); };
+      const off = () => { ['pointerdown', 'keydown', 'touchstart'].forEach(ev => window.removeEventListener(ev, go, true)); this.offGesture = null; };
+      this.offGesture = off;
+      ['pointerdown', 'keydown', 'touchstart'].forEach(ev => window.addEventListener(ev, go, true));
+    });
+  }
+  setupMusic() {
+    const a = this.audio = new Audio();
+    a.preload = 'auto';
+    a.setAttribute('playsinline', '');
+    // near the end, swap to the next track while playback is still "active" so browsers keep permission
+    a.addEventListener('loadedmetadata', () => this.setState({ dur: this.durNow() }));
+    a.addEventListener('timeupdate', () => {
+      const d = this.durNow(), c = this.curNow();
+      if (Math.floor(c * 2) !== Math.floor((this.state.cur || 0) * 2) || d !== this.state.dur) this.setState({ cur: c, dur: d });
+      if (!a.paused && d && d - c < 0.35 && !this.swapping) {
+        this.swapping = true; this.step(1); setTimeout(() => { this.swapping = false; }, 1500);
+      }
+    });
+    const p = this.readPrefs();
+    const vol = typeof p.vol === 'number' ? p.vol : 0.5;
+    a.volume = vol;
+    a.addEventListener('ended', () => { if (!this.swapping) this.step(1); });
+    a.addEventListener('play', () => this.setState({ playing: true }));
+    a.addEventListener('pause', () => this.setState({ playing: false }));
+    this.setState({ vol, open: p.choice === 'on' && p.open !== false });
+    if (p.choice === 'on') {
+      const go = e => {
+        off();
+        // clicks on the player's own buttons handle playback themselves; starting here too would make Play pause immediately
+        if (e.target && e.target.closest && e.target.closest('[aria-label="Music player"]')) return;
+        this.play();
+      };
+      const off = () => { ['pointerdown', 'keydown'].forEach(ev => window.removeEventListener(ev, go, true)); this.offGesture = null; };
+      this.offGesture = off;
+      ['pointerdown', 'keydown'].forEach(ev => window.addEventListener(ev, go, true));
+    } else if (!p.choice) {
+      this.pt = setTimeout(() => this.setState({ prompt: true }), 1200);
+    }
+  }
   componentDidMount() {
+    this.setupMusic();
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.still = reduce || this.props.motion === false;
     if (!this.still) {
@@ -458,7 +594,9 @@ class Component extends DCLogic {
     });
   }
   componentWillUnmount() {
-    clearInterval(this.tt); clearInterval(this.ct);
+    clearInterval(this.tt); clearInterval(this.ct); clearTimeout(this.pt);
+    this.offGesture && this.offGesture();
+    if (this.audio) { this.audio.pause(); this.audio.src = ''; }
     this.io && this.io.disconnect();
   }
   renderVals() {
@@ -471,6 +609,47 @@ class Component extends DCLogic {
       motionAttr: motion ? 'on' : 'off',
       typed: this.state.typed,
       cursorOpacity: this.state.cursor ? 1 : 0,
+      showPrompt: this.state.prompt,
+      trackTitle: TITLES[this.state.track || (PLAYLISTS[this.props.heroTime ?? 'day'] || PLAYLISTS.day)[0]],
+      timeCur: fmt(this.state.cur),
+      timeDur: fmt(this.state.dur),
+      progressPct: (this.state.dur ? Math.min(100, (this.state.cur / this.state.dur) * 100) : 0).toFixed(2) + '%',
+      progressNum: this.state.dur ? Math.round((this.state.cur / this.state.dur) * 100) : 0,
+      seek: e => {
+        if (!this.audio.src) { this.play(); return; }
+        const r = e.currentTarget.getBoundingClientRect();
+        const f = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+        const d = this.durNow();
+        if (d) { try { this.audio.currentTime = Math.min(f * d, d - 0.5); } catch (err) {} this.setState({ cur: this.curNow() }); }
+      },
+      playerOpen: this.state.open,
+      playerClosed: !this.state.open,
+      playing: this.state.playing,
+      paused: !this.state.playing,
+      playLabel: this.state.playing ? 'Pause music' : 'Play music',
+      noteColor: this.state.playing ? '#FFD23F' : '#FFFFFF',
+      volume: this.state.vol,
+      acceptMusic: () => { this.offGesture && this.offGesture(); this.savePrefs({ choice: 'on', open: true }); this.setState({ prompt: false, open: true }); this.play(); },
+      declineMusic: () => { this.savePrefs({ choice: 'off' }); this.setState({ prompt: false, open: false }); },
+      togglePlay: () => {
+        if (this.audio.paused) { this.savePrefs({ choice: 'on' }); this.offGesture && this.offGesture(); this.play(); }
+        else { this.audio.pause(); this.savePrefs({ choice: 'off' }); }
+      },
+      nextTrack: () => this.step(1),
+      prevTrack: () => this.step(-1),
+      setVolume: e => { const v = parseFloat(e.target.value); this.audio.volume = v; this.savePrefs({ vol: v }); this.setState({ vol: v }); },
+      minimize: () => { this.savePrefs({ open: false }); this.setState({ open: false }); },
+      expand: () => { this.savePrefs({ open: true }); this.setState({ open: true, prompt: false }); },
+      progressText: fmt(this.state.cur) + ' of ' + fmt(this.state.dur),
+      seekKey: e => {
+        const d = this.durNow();
+        const jump = { ArrowRight: 5, ArrowUp: 5, ArrowLeft: -5, ArrowDown: -5, PageUp: 30, PageDown: -30 }[e.key];
+        if (!this.audio.src || !d || (jump === undefined && e.key !== 'Home' && e.key !== 'End')) return;
+        e.preventDefault();
+        const t = e.key === 'Home' ? 0 : e.key === 'End' ? d - 0.5 : this.curNow() + jump;
+        try { this.audio.currentTime = Math.max(0, Math.min(t, d - 0.5)); } catch (err) {}
+        this.setState({ cur: this.curNow() });
+      },
       tags: TAGS,
       badges: BADGES,
       year: new Date().getFullYear()
