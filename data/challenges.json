@@ -1,0 +1,21 @@
+{
+  "challenges": [
+    {
+      "id": "road-to-2027",
+      "title": "66 days to 2027",
+      "start": "2026-10-27",
+      "end": "2026-12-31",
+      "blurb": "Every day until New Year's Eve: one video, one DSA problem, no reels, a gratitude entry and one person helped. One project a week, and as many events as I can get to.",
+      "tasks": [
+        { "id": "video", "label": "Post a video", "type": "link", "cadence": "daily", "hint": "Link to the video" },
+        { "id": "dsa", "label": "Solve a DSA problem", "type": "shots", "cadence": "daily", "hint": "Screenshot of the solution" },
+        { "id": "noreels", "label": "No Instagram reels", "type": "check", "cadence": "daily" },
+        { "id": "discipline", "label": "Discipline streak", "type": "check", "cadence": "daily" },
+        { "id": "gratitude", "label": "Gratitude journal", "type": "text", "cadence": "daily", "hint": "What are you grateful for today?" },
+        { "id": "help", "label": "Help one person", "type": "text", "cadence": "daily", "hint": "Who did you help? (optional)" },
+        { "id": "project", "label": "Ship a project", "type": "link", "cadence": "weekly", "hint": "Link to the project or repo" },
+        { "id": "events", "label": "Went to an event", "type": "text", "cadence": "bonus", "hint": "Which event?" }
+      ]
+    }
+  ]
+}

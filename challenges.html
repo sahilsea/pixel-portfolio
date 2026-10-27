@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Challenges · Sahil Kumar</title>
+<meta name="description" content="Sahil Kumar's current challenge: 66 days to 2027. A daily video, a DSA problem, no reels, gratitude, helping people and a project every week.">
+<meta name="theme-color" content="#020414">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="66 days to 2027 · Sahil Kumar">
+<meta property="og:description" content="A daily video, a DSA problem, no reels, gratitude and a project a week, until New Year's Eve.">
+<meta property="og:image" content="https://pixel-portfolio-eta-seven.vercel.app/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="_ds/pixel-art-design-system-d84aca62-70a9-44a2-a722-9e7092c96d44/styles.css">
+<script src="pixel-scene.js"></script>
+<style>
+html{scroll-behavior:smooth}
+[hidden]{display:none!important}
+body{margin:0;background:var(--ink-950);color:var(--fg-2);font-family:var(--font-body)}
+a{color:var(--blue-300)}a:hover{color:var(--yellow-300)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--focus-ring,#7CD4FF);outline-offset:3px}
+.wrap{max-width:1024px;margin:0 auto;padding:0 16px;box-sizing:border-box}
+.eyebrow{font-family:var(--font-pixel-caps);font-size:13px;letter-spacing:.22em;color:var(--yellow-400)}
+.muted{color:var(--fg-3)}
+
+nav.site-nav{position:sticky;top:0;z-index:50;height:52px;box-sizing:border-box;background:var(--ink-950);border-bottom:2px solid var(--ink-750);display:flex;align-items:center;gap:20px;padding:0 20px}
+nav .brand{font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--fg-1);text-decoration:none;white-space:nowrap;margin-right:auto}
+nav .brand span{color:var(--yellow-400)}
+nav a.link{font-family:var(--font-display);font-size:16px;color:var(--gray-200);text-decoration:none}
+nav a.link[aria-current]{color:var(--yellow-300)}
+
+.btn{font-family:var(--font-display);font-size:16px;line-height:1;padding:12px 18px;border:2px solid #1A1200;background:var(--yellow-400);color:#1A1200;cursor:pointer;clip-path:var(--clip-notch-sm);box-shadow:var(--bevel-yellow);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{background:var(--yellow-300)}
+.btn:active{box-shadow:inset 0 -1px 0 rgba(0,0,0,.35);transform:translateY(2px)}
+.btn[disabled]{opacity:.55;cursor:progress}
+.btn.ghost{background:transparent;color:var(--fg-1);border-color:var(--ink-600);box-shadow:none}
+.btn.ghost:hover{border-color:var(--yellow-300);color:var(--yellow-300)}
+.btn.sm{font-size:14px;padding:8px 12px}
+
+header.hero{position:relative;height:300px;overflow:hidden;background:#020414}
+header.hero .scene{position:absolute;inset:0}
+header.hero pixel-scene{display:block;width:100%;height:100%}
+header.hero .fade{position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,rgba(2,4,20,0),#020414)}
+header.hero .wrap{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding-bottom:24px}
+header.hero h1{font-size:clamp(40px,8vw,72px);line-height:1;color:var(--white);text-shadow:0 4px 0 rgba(2,4,20,.6)}
+header.hero p{margin:0;max-width:640px;font-size:17px;line-height:1.55;color:var(--white);font-weight:600;text-shadow:0 2px 0 rgba(2,4,20,.7),0 0 12px rgba(2,4,20,.8)}
+
+.switcher{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.switcher button{font-family:var(--font-display);font-size:14px;padding:6px 12px;background:var(--ink-850);color:var(--gray-200);border:2px solid var(--ink-700);clip-path:var(--clip-notch-sm);cursor:pointer}
+.switcher button[aria-pressed="true"]{border-color:var(--yellow-400);color:var(--yellow-300)}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:28px}
+.stat{background:var(--ink-900);border:2px solid var(--ink-750);padding:16px;clip-path:var(--clip-notch-md)}
+.stat b{display:block;font-family:var(--font-display);font-size:34px;line-height:1;color:var(--yellow-300)}
+.stat span{font-size:14px;color:var(--fg-3)}
+.bar{height:12px;background:var(--ink-800);border:2px solid var(--ink-700);margin-top:12px}
+.bar i{display:block;height:100%;background:var(--yellow-400);transition:width var(--dur-slow,220ms) var(--ease-pixel,steps(4))}
+
+h2.sec{font-size:clamp(26px,4vw,34px);margin:56px 0 6px}
+
+.tasks{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:20px}
+.task{background:var(--ink-900);border:2px solid var(--ink-750);padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.task .name{font-family:var(--font-display);font-size:18px;color:var(--fg-1);display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.task .cad{font-family:var(--font-pixel-caps);font-size:10px;letter-spacing:.14em;color:var(--blue-300)}
+.task .nums{font-size:14px;color:var(--fg-3)}
+.task .streak{color:var(--orange-400);font-weight:700}
+
+.cal{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px;margin-top:20px}
+.cal button{aspect-ratio:1;border:2px solid var(--ink-750);background:var(--ink-850);color:var(--fg-3);font-family:var(--font-display);font-size:13px;cursor:pointer;padding:0;position:relative}
+.cal button[data-l="1"]{background:#123A1E;color:#BFF0C4;border-color:#1F5A2E}
+.cal button[data-l="2"]{background:#1F6B2A;color:#E6FFE6;border-color:#2C8A3A}
+.cal button[data-l="3"]{background:#3FA23A;color:#0B2A08;border-color:#5DC055}
+.cal button[data-l="4"]{background:var(--yellow-400);color:#1A1200;border-color:var(--yellow-600)}
+.cal button.future{opacity:.35;cursor:default}
+.cal button.today{outline:3px solid var(--blue-300);outline-offset:1px}
+.legend{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--fg-3);margin-top:10px}
+.legend i{width:14px;height:14px;display:inline-block;border:2px solid var(--ink-750)}
+
+.feed{display:flex;flex-direction:column;gap:16px;margin:20px 0 80px}
+.day{background:var(--ink-900);border:2px solid var(--ink-750);padding:18px 20px;scroll-margin-top:68px}
+.day.flash{border-color:var(--yellow-400)}
+.day header{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between}
+.day h3{font-size:22px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{font-family:var(--font-display);font-size:13px;padding:3px 8px;border:2px solid var(--ink-700);color:var(--fg-3)}
+.chip.on{border-color:#2C8A3A;color:#BFF0C4;background:#123A1E}
+.detail{margin-top:14px;display:flex;flex-direction:column;gap:12px}
+.detail .lbl{font-family:var(--font-pixel-caps);font-size:11px;letter-spacing:.14em;color:var(--fg-3);margin-bottom:4px}
+.detail p{margin:0;line-height:1.6;white-space:pre-wrap;color:var(--fg-2)}
+blockquote.grat{margin:0;padding:10px 14px;background:var(--ink-850);border-left:4px solid var(--pink-400);color:var(--fg-1);line-height:1.6;white-space:pre-wrap}
+.shots{display:flex;flex-wrap:wrap;gap:8px}
+.shots a{display:block;width:160px;height:110px;border:2px solid var(--ink-700);background:var(--ink-850);overflow:hidden}
+.shots img{width:100%;height:100%;object-fit:cover;display:block}
+.empty{padding:28px;text-align:center;border:2px dashed var(--ink-700);color:var(--fg-3)}
+
+footer{border-top:2px solid var(--ink-750);padding:24px 16px;text-align:center;font-size:14px;color:var(--fg-3)}
+footer button{background:none;border:0;color:var(--fg-3);font:inherit;text-decoration:underline;cursor:pointer}
+
+.fab{position:fixed;right:16px;bottom:16px;z-index:60}
+
+dialog{background:var(--ink-900);color:var(--fg-2);border:2px solid var(--ink-600);padding:0;width:min(640px,calc(100vw - 32px));max-height:calc(100vh - 48px);box-shadow:var(--shadow-float)}
+dialog::backdrop{background:rgba(2,4,20,.75)}
+dialog form{padding:22px;display:flex;flex-direction:column;gap:16px}
+dialog h2{font-size:26px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+label.fld{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--fg-3)}
+input[type=text],input[type=url],input[type=password],input[type=date],textarea{font:inherit;font-size:16px;background:var(--ink-950);color:var(--fg-1);border:2px solid var(--ink-700);padding:10px 12px;box-sizing:border-box;width:100%}
+textarea{min-height:76px;resize:vertical}
+input:focus,textarea:focus{border-color:var(--blue-300)}
+.ftask{border:2px solid var(--ink-750);padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.ftask .head{display:flex;gap:10px;align-items:center;font-family:var(--font-display);font-size:17px;color:var(--fg-1);cursor:pointer}
+.ftask .head input{width:20px;height:20px;accent-color:var(--yellow-400)}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px}
+.thumbs div{position:relative;width:96px;height:68px;border:2px solid var(--ink-700)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs button{position:absolute;top:-8px;right:-8px;width:24px;height:24px;border:2px solid #1A1200;background:var(--red-400);color:#fff;font-weight:800;cursor:pointer;line-height:1;padding:0}
+.err{color:var(--red-400);font-size:14px;min-height:1em;margin:0}
+.ok{color:var(--green-300)}
+
+@media (max-width:720px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}nav.site-nav{padding:0 16px;gap:14px}header.hero{height:260px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a class="brand" href="./">Sahil Kumar<span>✧</span></a>
+  <a class="link" href="./">Home</a>
+  <a class="link" href="challenges.html" aria-current="page">Challenges</a>
+</nav>
+
+<header class="hero">
+  <div class="scene"><pixel-scene preset="fireflies" px="4"></pixel-scene></div>
+  <div class="fade"></div>
+  <div class="wrap">
+    <span class="eyebrow" id="hero-eyebrow">CURRENT CHALLENGE</span>
+    <h1 id="hero-title">Challenges</h1>
+    <p id="hero-blurb"></p>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  <div class="switcher" id="switcher" hidden></div>
+  <section class="stats" id="stats" aria-label="Progress"></section>
+
+  <h2 class="sec">The rules</h2>
+  <p class="muted" style="margin:0">Streaks count back from today. A day still in progress doesn't break one.</p>
+  <div class="tasks" id="tasks"></div>
+
+  <h2 class="sec">Every day</h2>
+  <p class="muted" style="margin:0">Each square is one day. The brighter it is, the more daily tasks got done.</p>
+  <div class="cal" id="cal"></div>
+  <div class="legend">Less <i style="background:var(--ink-850)"></i><i style="background:#123A1E"></i><i style="background:#1F6B2A"></i><i style="background:#3FA23A"></i><i style="background:var(--yellow-400)"></i> All done</div>
+
+  <h2 class="sec">Log</h2>
+  <div class="feed" id="feed"><div class="empty">Loading…</div></div>
+</main>
+
+<footer>Made in Bengaluru · <a href="./">Back to the portfolio</a> · <button type="button" id="login-link">Owner log in</button></footer>
+
+<button class="btn fab" id="fab" hidden>✎ Log today</button>
+
+<dialog id="login-dlg">
+  <form method="dialog" id="login-form">
+    <h2>Owner log in</h2>
+    <label class="fld">Password<input type="password" id="pw" autocomplete="current-password" required></label>
+    <p class="err" id="login-err"></p>
+    <div class="row"><button class="btn" type="submit" id="login-btn">Log in</button><button class="btn ghost" type="button" data-close>Cancel</button></div>
+  </form>
+</dialog>
+
+<dialog id="log-dlg">
+  <form method="dialog" id="log-form">
+    <div class="row" style="justify-content:space-between"><h2 id="log-title">Log a day</h2><button class="btn ghost sm" type="button" data-close>Close</button></div>
+    <label class="fld">Date<input type="date" id="log-date" required></label>
+    <div id="log-fields" style="display:flex;flex-direction:column;gap:12px"></div>
+    <p class="err" id="log-err" role="status"></p>
+    <div class="row"><button class="btn" type="submit" id="save-btn">Save day</button><button class="btn ghost" type="button" id="logout-btn">Log out</button></div>
+  </form>
+</dialog>
+
+<script>
+(() => {
+  const PW_KEY = 'challenge-admin-pw';
+  const $ = id => document.getElementById(id);
+  const store = {
+    get(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { v == null ? sessionStorage.removeItem(k) : sessionStorage.setItem(k, v); } catch (e) {} }
+  };
+  function el(tag, attrs, ...kids) {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) {
+      if (v == null || v === false) continue;
+      if (k === 'class') n.className = v;
+      else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
+      else n.setAttribute(k, v === true ? '' : v);
+    }
+    for (const c of kids.flat()) if (c != null && c !== false) n.append(c);
+    return n;
+  }
+  const safeUrl = u => { try { const x = new URL(u); return /^https?:$/.test(x.protocol) ? x.href : null; } catch (e) { return null; } };
+
+  // Dates are calendar days in India time, handled as UTC midnights so the math never drifts.
+  const todayStr = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date());
+  const toMs = s => Date.parse(s + 'T00:00:00Z');
+  const toStr = ms => new Date(ms).toISOString().slice(0, 10);
+  const DAY = 864e5;
+  const pretty = s => new Date(toMs(s)).toLocaleDateString('en-IN', { timeZone: 'UTC', weekday: 'short', day: 'numeric', month: 'short' });
+
+  let challenges = [], ch = null, entries = {}, pw = store.get(PW_KEY);
+
+  const dayIndex = s => Math.round((toMs(s) - toMs(ch.start)) / DAY);
+  const totalDays = () => dayIndex(ch.end) + 1;
+  const isDone = (e, id) => !!(e && e.fields && e.fields[id] && e.fields[id].done);
+  const daily = () => ch.tasks.filter(t => t.cadence === 'daily');
+  function elapsedDays() {
+    const t = todayStr();
+    if (t < ch.start) return [];
+    const last = t > ch.end ? ch.end : t, out = [];
+    for (let ms = toMs(ch.start); ms <= toMs(last); ms += DAY) out.push(toStr(ms));
+    return out;
+  }
+
+  function streak(id) {
+    const days = elapsedDays();
+    let i = days.length - 1, n = 0;
+    if (i >= 0 && days[i] === todayStr() && !isDone(entries[days[i]], id)) i--; // today isn't over yet
+    for (; i >= 0 && isDone(entries[days[i]], id); i--) n++;
+    return n;
+  }
+
+  function renderHero() {
+    $('hero-title').textContent = ch.title;
+    $('hero-blurb').textContent = ch.blurb || '';
+    const t = todayStr();
+    $('hero-eyebrow').textContent = t < ch.start ? 'STARTS ' + pretty(ch.start).toUpperCase() : t > ch.end ? 'FINISHED CHALLENGE' : 'CURRENT CHALLENGE';
+    document.title = ch.title + ' · Sahil Kumar';
+  }
+
+  function renderSwitcher() {
+    const s = $('switcher');
+    s.hidden = challenges.length < 2;
+    s.replaceChildren(...challenges.map(c => el('button', { type: 'button', 'aria-pressed': String(c === ch), onclick: () => select(c.id) }, c.title)));
+  }
+
+  function renderStats() {
+    const days = elapsedDays(), total = totalDays(), t = todayStr();
+    const dayNo = Math.min(days.length, total);
+    const perfect = days.filter(d => daily().every(task => isDone(entries[d], task.id))).length;
+    const left = t < ch.start ? total : Math.max(0, dayIndex(ch.end) - dayIndex(t));
+    const best = Math.max(0, ...daily().map(task => streak(task.id)));
+    const stat = (num, label, bar) => el('div', { class: 'stat' }, el('b', null, String(num)), el('span', null, label),
+      bar != null ? el('div', { class: 'bar' }, el('i', { style: `width:${Math.round(bar * 100)}%` })) : null);
+    $('stats').replaceChildren(
+      stat(dayNo + ' / ' + total, 'days in', dayNo / total),
+      stat(left, left === 1 ? 'day left' : 'days left'),
+      stat(perfect, 'perfect days'),
+      stat(best, 'best current streak')
+    );
+  }
+
+  function renderTasks() {
+    const days = elapsedDays();
+    const weeks = Math.ceil(totalDays() / 7);
+    $('tasks').replaceChildren(...ch.tasks.map(task => {
+      let nums;
+      if (task.cadence === 'daily') {
+        const done = days.filter(d => isDone(entries[d], task.id)).length, s = streak(task.id);
+        nums = [`${done} of ${days.length} days`, s ? el('span', { class: 'streak' }, ` · ${s} day streak`) : null];
+      } else if (task.cadence === 'weekly') {
+        const weeksDone = new Set(days.filter(d => isDone(entries[d], task.id)).map(d => Math.floor(dayIndex(d) / 7))).size;
+        nums = [`${weeksDone} of ${weeks} weeks`];
+      } else {
+        nums = [`${days.filter(d => isDone(entries[d], task.id)).length} so far`];
+      }
+      return el('div', { class: 'task' },
+        el('div', { class: 'name' }, task.label, el('span', { class: 'cad' }, task.cadence === 'bonus' ? 'AS MANY AS I CAN' : task.cadence.toUpperCase())),
+        el('div', { class: 'nums' }, nums));
+    }));
+  }
+
+  function renderCal() {
+    const t = todayStr(), d = daily();
+    const cells = [];
+    for (let ms = toMs(ch.start); ms <= toMs(ch.end); ms += DAY) {
+      const s = toStr(ms), future = s > t;
+      const n = d.filter(task => isDone(entries[s], task.id)).length;
+      const level = n === 0 ? 0 : n === d.length ? 4 : Math.min(3, Math.ceil(n / d.length * 3));
+      cells.push(el('button', {
+        type: 'button', class: [future && 'future', s === t && 'today'].filter(Boolean).join(' ') || null,
+        'data-l': future ? null : String(level),
+        'aria-label': `Day ${dayIndex(s) + 1}, ${pretty(s)}: ${future ? 'upcoming' : n + ' of ' + d.length + ' daily tasks'}`,
+        title: `${pretty(s)} · ${n}/${d.length}`,
+        onclick: () => future ? null : openDay(s)
+      }, String(dayIndex(s) + 1)));
+    }
+    $('cal').replaceChildren(...cells);
+  }
+
+  function openDay(s) {
+    const card = $('day-' + s);
+    if (card) {
+      card.scrollIntoView({ block: 'start' });
+      card.classList.add('flash'); setTimeout(() => card.classList.remove('flash'), 1200);
+    } else if (pw) openLog(s);
+  }
+
+  function renderFeed() {
+    const days = Object.keys(entries).filter(d => d >= ch.start && d <= ch.end).sort().reverse();
+    if (!days.length) {
+      $('feed').replaceChildren(el('div', { class: 'empty' }, todayStr() < ch.start ? 'The challenge hasn’t started yet.' : 'Nothing logged yet. Day 1 starts now.'));
+      return;
+    }
+    $('feed').replaceChildren(...days.map(d => {
+      const e = entries[d], f = e.fields || {};
+      const detail = [];
+      for (const task of ch.tasks) {
+        const v = f[task.id] && f[task.id].value;
+        if (!v || (Array.isArray(v) && !v.length)) continue;
+        if (task.type === 'link') {
+          const u = safeUrl(v);
+          if (u) detail.push(el('div', null, el('div', { class: 'lbl' }, task.label.toUpperCase()), el('a', { href: u, target: '_blank', rel: 'noopener' }, u.replace(/^https?:\/\/(www\.)?/, '').slice(0, 70))));
+        } else if (task.type === 'shots') {
+          detail.push(el('div', null, el('div', { class: 'lbl' }, task.label.toUpperCase()),
+            el('div', { class: 'shots' }, v.map((u, i) => safeUrl(u) && el('a', { href: u, target: '_blank', rel: 'noopener' },
+              el('img', { src: u, alt: `${task.label}, screenshot ${i + 1}`, loading: 'lazy' }))))));
+        } else if (task.type === 'text') {
+          detail.push(el('div', null, el('div', { class: 'lbl' }, task.label.toUpperCase()),
+            task.id === 'gratitude' ? el('blockquote', { class: 'grat' }, v) : el('p', null, v)));
+        }
+      }
+      return el('article', { class: 'day', id: 'day-' + d },
+        el('header', null, el('h3', null, `Day ${dayIndex(d) + 1}`), el('span', { class: 'muted' }, pretty(d)),
+          pw ? el('button', { type: 'button', class: 'btn ghost sm', onclick: () => openLog(d) }, 'Edit') : null),
+        el('div', { class: 'chips' }, ch.tasks.filter(t => t.cadence === 'daily' || isDone(e, t.id))
+          .map(t => el('span', { class: 'chip' + (isDone(e, t.id) ? ' on' : '') }, (isDone(e, t.id) ? '✓ ' : '· ') + t.label))),
+        detail.length ? el('div', { class: 'detail' }, detail) : null);
+    }));
+  }
+
+  function renderAll() { renderHero(); renderSwitcher(); renderStats(); renderTasks(); renderCal(); renderFeed(); $('fab').hidden = !pw; $('login-link').hidden = !!pw; }
+
+  async function loadEntries() {
+    try {
+      // The owner skips the 15-second CDN cache so a fresh save shows up straight away.
+      const r = await fetch('api/log?challenge=' + encodeURIComponent(ch.id) + (pw ? '&t=' + Date.now() : ''), { cache: 'no-store' });
+      entries = r.ok ? (await r.json()).entries || {} : {};
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+    } catch (e) {
+      entries = {};
+      renderAll();
+      $('feed').replaceChildren(el('div', { class: 'empty' }, 'Couldn’t load the log right now. Try again in a bit.'));
+      return;
+    }
+    renderAll();
+    if (location.hash.startsWith('#day-')) openDay(location.hash.slice(5));
+  }
+
+  function select(id) {
+    ch = challenges.find(c => c.id === id) || ch;
+    history.replaceState(null, '', '?c=' + ch.id + location.hash);
+    renderAll(); loadEntries();
+  }
+
+  // ---------- owner tools ----------
+  async function api(path, opts = {}) {
+    const r = await fetch(path, { ...opts, headers: { ...(opts.headers || {}), 'x-admin-password': pw || '' } });
+    const data = await r.json().catch(() => ({}));
+    if (r.status === 401) { pw = null; store.set(PW_KEY, null); renderAll(); }
+    if (!r.ok) throw new Error(data.error || 'Request failed (' + r.status + ')');
+    return data;
+  }
+
+  $('login-link').onclick = () => { $('login-err').textContent = ''; $('login-dlg').showModal(); $('pw').focus(); };
+  $('login-form').onsubmit = async ev => {
+    ev.preventDefault();
+    const btn = $('login-btn'); btn.disabled = true; $('login-err').textContent = '';
+    pw = $('pw').value;
+    try {
+      await api('api/auth', { method: 'POST' });
+      store.set(PW_KEY, pw); $('pw').value = '';
+      $('login-dlg').close(); renderAll(); openLog(todayStr());
+    } catch (e) { pw = null; $('login-err').textContent = e.message; }
+    btn.disabled = false;
+  };
+  document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => b.closest('dialog').close());
+  $('logout-btn').onclick = () => { pw = null; store.set(PW_KEY, null); $('log-dlg').close(); renderAll(); };
+  $('fab').onclick = () => openLog(todayStr());
+
+  // Shrink screenshots in the browser so uploads stay well under the 4.5 MB function limit.
+  async function shrink(file) {
+    const bmp = await createImageBitmap(file);
+    const scale = Math.min(1, 1600 / bmp.width);
+    const c = document.createElement('canvas');
+    c.width = Math.round(bmp.width * scale); c.height = Math.round(bmp.height * scale);
+    c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+    const as = (type, q) => new Promise(res => c.toBlob(res, type, q));
+    let out = await as('image/webp', 0.85);
+    if (!out || out.type !== 'image/webp') out = await as('image/jpeg', 0.85);
+    return out;
+  }
+
+  let draft = null; // { date, fields: {id: {done, value}} } plus pending File objects
+
+  function openLog(date) {
+    if (!pw) return;
+    const d = date < ch.start ? ch.start : date > ch.end ? ch.end : date;
+    $('log-date').min = ch.start; $('log-date').max = ch.end; $('log-date').value = d;
+    loadDraft(d);
+    $('log-err').textContent = '';
+    if (!$('log-dlg').open) $('log-dlg').showModal();
+  }
+  $('log-date').onchange = () => { if ($('log-date').value) loadDraft($('log-date').value); };
+
+  function loadDraft(date) {
+    const e = entries[date];
+    draft = { date, fields: {}, pending: {} };
+    for (const task of ch.tasks) {
+      const f = (e && e.fields && e.fields[task.id]) || {};
+      draft.fields[task.id] = { done: !!f.done, value: task.type === 'shots' ? (Array.isArray(f.value) ? f.value.slice() : []) : (f.value || '') };
+      draft.pending[task.id] = [];
+    }
+    $('log-title').textContent = `Day ${dayIndex(date) + 1} · ${pretty(date)}`;
+    renderForm();
+  }
+
+  function renderForm() {
+    $('log-fields').replaceChildren(...ch.tasks.map(task => {
+      const f = draft.fields[task.id];
+      const box = el('input', { type: 'checkbox', checked: f.done, onchange: e => { f.done = e.target.checked; } });
+      const head = el('label', { class: 'head' }, box, task.label);
+      const body = [];
+      const tick = () => { box.checked = f.done = true; };
+      if (task.type === 'link') {
+        body.push(el('input', { type: 'url', placeholder: task.hint || 'https://…', value: f.value, oninput: e => { f.value = e.target.value; if (f.value) tick(); } }));
+      } else if (task.type === 'text') {
+        const ta = el('textarea', { placeholder: task.hint || '', oninput: e => { f.value = e.target.value; if (f.value.trim()) tick(); } });
+        ta.value = f.value;
+        body.push(ta);
+      } else if (task.type === 'shots') {
+        const pend = draft.pending[task.id];
+        const thumbs = el('div', { class: 'thumbs' },
+          f.value.map((u, i) => el('div', null, el('img', { src: u, alt: '' }), el('button', { type: 'button', 'aria-label': 'Remove screenshot', onclick: () => { f.value.splice(i, 1); renderForm(); } }, '×'))),
+          pend.map((p, i) => el('div', null, el('img', { src: p.preview, alt: '' }), el('button', { type: 'button', 'aria-label': 'Remove screenshot', onclick: () => { URL.revokeObjectURL(p.preview); pend.splice(i, 1); renderForm(); } }, '×'))));
+        const file = el('input', { type: 'file', accept: 'image/*', multiple: true, onchange: e => {
+          for (const fl of e.target.files) pend.push({ file: fl, preview: URL.createObjectURL(fl) });
+          if (e.target.files.length) f.done = true;
+          renderForm();
+        } });
+        body.push(thumbs, file);
+      }
+      return el('div', { class: 'ftask' }, head, body);
+    }));
+  }
+
+  $('log-form').onsubmit = async ev => {
+    ev.preventDefault();
+    const btn = $('save-btn'), msg = $('log-err');
+    btn.disabled = true; msg.className = 'err';
+    const q = '?challenge=' + encodeURIComponent(ch.id) + '&date=' + draft.date;
+    try {
+      for (const task of ch.tasks) {
+        const pend = draft.pending[task.id];
+        while (pend && pend.length) {
+          msg.textContent = 'Uploading screenshot…';
+          const blob = await shrink(pend[0].file);
+          const { url } = await api('api/upload' + q, { method: 'POST', headers: { 'content-type': blob.type }, body: blob });
+          draft.fields[task.id].value.push(url);
+          URL.revokeObjectURL(pend.shift().preview);
+        }
+      }
+      msg.textContent = 'Saving…';
+      const fields = {};
+      for (const task of ch.tasks) fields[task.id] = { ...draft.fields[task.id], kind: task.type };
+      const { entry } = await api('api/log' + q, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ fields }) });
+      entries[draft.date] = entry;
+      renderAll();
+      msg.className = 'err ok'; msg.textContent = 'Saved ✓';
+      setTimeout(() => { if ($('log-dlg').open) $('log-dlg').close(); }, 600);
+    } catch (e) {
+      msg.textContent = e.message;
+      renderForm();
+    }
+    btn.disabled = false;
+  };
+
+  fetch('data/challenges.json').then(r => r.json()).then(cfg => {
+    challenges = (cfg.challenges || []).slice().sort((a, b) => b.start.localeCompare(a.start));
+    if (!challenges.length) { $('feed').replaceChildren(el('div', { class: 'empty' }, 'No challenges yet.')); return; }
+    const want = new URLSearchParams(location.search).get('c');
+    const t = todayStr();
+    ch = challenges.find(c => c.id === want) || challenges.find(c => c.start <= t && t <= c.end) || challenges[0];
+    renderAll(); loadEntries();
+  }).catch(() => $('feed').replaceChildren(el('div', { class: 'empty' }, 'Couldn’t load challenges.')));
+})();
+</script>
+</body>
+</html>
