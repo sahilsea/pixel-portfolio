@@ -82,6 +82,8 @@ h2.sec{font-size:clamp(26px,4vw,34px);margin:56px 0 6px}
 .day.flash{border-color:var(--yellow-400)}
 .day header{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between}
 .day h3{font-size:22px}
+.day .acts{display:flex;gap:8px;margin-left:auto}
+.day .detail[hidden]{display:none}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .chip{font-family:var(--font-display);font-size:13px;padding:3px 8px;border:2px solid var(--ink-700);color:var(--fg-3)}
 .chip.on{border-color:#2C8A3A;color:#BFF0C4;background:#123A1E}
@@ -300,10 +302,13 @@ input:focus,textarea:focus{border-color:var(--blue-300)}
   function openDay(s) {
     const card = $('day-' + s);
     if (card) {
+      if (!openCards.has(s)) { openCards.add(s); renderFeed(); return openDay(s); }
       card.scrollIntoView({ block: 'start' });
       card.classList.add('flash'); setTimeout(() => card.classList.remove('flash'), 1200);
     } else if (pw) openLog(s);
   }
+
+  const openCards = new Set(); // days whose details are shown; everything starts collapsed
 
   function renderFeed() {
     const days = Object.keys(entries).filter(d => d >= ch.start && d <= ch.end).sort().reverse();
@@ -329,12 +334,16 @@ input:focus,textarea:focus{border-color:var(--blue-300)}
             task.id === 'gratitude' ? el('blockquote', { class: 'grat' }, v) : el('p', null, v)));
         }
       }
+      const open = openCards.has(d);
+      const toggle = () => { open ? openCards.delete(d) : openCards.add(d); renderFeed(); $('toggle-' + d).focus(); };
       return el('article', { class: 'day', id: 'day-' + d },
         el('header', null, el('h3', null, `Day ${dayIndex(d) + 1}`), el('span', { class: 'muted' }, pretty(d)),
-          pw ? el('button', { type: 'button', class: 'btn ghost sm', onclick: () => openLog(d) }, 'Edit') : null),
+          el('div', { class: 'acts' },
+            detail.length ? el('button', { type: 'button', class: 'btn ghost sm', id: 'toggle-' + d, 'aria-expanded': String(open), 'aria-controls': 'detail-' + d, onclick: toggle }, open ? 'Show less ▴' : 'Show more ▾') : null,
+            pw ? el('button', { type: 'button', class: 'btn ghost sm', onclick: () => openLog(d) }, 'Edit') : null)),
         el('div', { class: 'chips' }, ch.tasks.filter(t => t.cadence === 'daily' || isDone(e, t.id))
           .map(t => el('span', { class: 'chip' + (isDone(e, t.id) ? ' on' : '') }, (isDone(e, t.id) ? '✓ ' : '· ') + t.label))),
-        detail.length ? el('div', { class: 'detail' }, detail) : null);
+        detail.length ? el('div', { class: 'detail', id: 'detail-' + d, hidden: !open }, detail) : null);
     }));
   }
 
